@@ -8,4 +8,5 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.ts', '!src/server.ts', '!src/docs/**'],
   setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
   testTimeout: 30000,
+  transformIgnorePatterns: ['/node_modules/(?!(sanitize-html|htmlparser2|domhandler|dom-serializer|entities)/)'],
 };

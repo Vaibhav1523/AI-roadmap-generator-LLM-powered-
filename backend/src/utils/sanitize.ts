@@ -1,10 +1,6 @@
-import sanitizeHtml from 'sanitize-html';
-
 export function sanitizeString(input: string): string {
-  return sanitizeHtml(input, {
-    allowedTags: [],
-    allowedAttributes: {},
-  }).trim();
+  if (!input) return '';
+  return input.replace(/<[^>]*>?/gm, '').trim();
 }
 
 export function sanitizeObject<T extends Record<string, unknown>>(obj: T): T {
