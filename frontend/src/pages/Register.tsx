@@ -39,11 +39,12 @@ export const Register: React.FC = () => {
       navigate('/profile', { replace: true });
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const msg = err.response?.data?.message;
+        const data = err.response?.data;
+        const msg = data?.message || data?.error || (typeof data === 'string' ? data : null);
         setApiError(
-          msg === 'Email already exists'
+          msg === 'Email already exists' || msg === 'Email already registered'
             ? 'An account with this email already exists. Try logging in.'
-            : (msg ?? 'Registration failed. Please try again.')
+            : (msg ?? 'Registration failed. Please ensure password has uppercase, lowercase, number, and min 8 chars.')
         );
       } else {
         setApiError('Something went wrong. Please try again.');

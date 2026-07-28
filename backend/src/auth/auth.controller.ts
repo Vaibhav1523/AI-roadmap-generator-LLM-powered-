@@ -6,11 +6,11 @@ import { env } from '../config/env';
 function getCookieOptions(maxAge: number) {
   const options: Record<string, unknown> = {
     httpOnly: true,
-    secure: env.COOKIE_SECURE,
+    secure: env.COOKIE_SECURE || env.NODE_ENV === 'production',
     sameSite: 'lax',
     maxAge,
   };
-  if (env.COOKIE_DOMAIN && env.COOKIE_DOMAIN !== 'localhost') {
+  if (env.COOKIE_DOMAIN && env.COOKIE_DOMAIN !== 'localhost' && !env.COOKIE_DOMAIN.endsWith('vercel.app')) {
     options.domain = env.COOKIE_DOMAIN;
   }
   return options;

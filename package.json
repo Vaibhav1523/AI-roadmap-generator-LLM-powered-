@@ -10,7 +10,7 @@
     "prisma:migrate": "npx prisma migrate dev --schema=backend/prisma/schema.prisma",
     "build:frontend": "cd frontend && npx vite build",
     "build:backend": "cd backend && npx tsc",
-    "build": "npx prisma generate --schema=backend/prisma/schema.prisma && npm run build:backend && npm run build:frontend"
+    "build": "npm run build:backend && npm run build:frontend"
   },
   "dependencies": {
     "@google/genai": "^2.10.0",
